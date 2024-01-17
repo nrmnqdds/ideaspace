@@ -1,5 +1,8 @@
+import Footer from "@/components/footer";
+import QueryProvider from "@/contexts/query-provider";
 import { ThemeProvider } from "@/contexts/theme-provider";
 import type { Metadata } from "next";
+import Image from "next/image";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,7 +19,16 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className="min-h-screen font-geist antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark">
-          {children}
+          <QueryProvider>
+            <Image
+              src="/bg.svg"
+              alt="background"
+              fill
+              className="absolute w-full h-full dark:invert z-0 pointer-events-none opacity-50 dark:opacity-30"
+            />
+            {children}
+            <Footer />
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
