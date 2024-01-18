@@ -19,7 +19,7 @@ export const ThemeSwitcher = React.forwardRef<HTMLButtonElement, ButtonProps>(
         name="theme-switcher"
         type="button"
         className={cn(
-          "w-fit p-2 rounded-md hover:scale-110 active:scale-100 duration-200 text-zinc-900 dark:text-slate-200 text-2xl font-bold focus:outline-none",
+          "w-fit p-2 rounded-md hover:scale-110 active:scale-100 duration-200 text-foreground text-2xl font-bold focus:outline-none",
           className,
         )}
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
