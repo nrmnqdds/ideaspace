@@ -43,7 +43,7 @@ const IdeaList = () => {
           </>
         ) : (
           <>
-            {data?.map((idea, i) => (
+            {data?.toReversed().map((idea, i) => (
               <IdeaCard key={i} {...idea} author={idea.author.name as string} />
             ))}
           </>
