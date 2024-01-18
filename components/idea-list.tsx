@@ -1,6 +1,6 @@
 "use client";
 
-import { GetIdeas } from "@/actions/idea-actions";
+import { GetAllIdeas } from "@/actions/idea-actions";
 import IdeaCard from "@/components/idea-card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -8,9 +8,9 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
 const IdeaList = () => {
-  const data = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ["ideas"],
-    queryFn: async () => await GetIdeas(),
+    queryFn: async () => await GetAllIdeas(),
   });
 
   return (
@@ -21,7 +21,7 @@ const IdeaList = () => {
         </Link>
       </div>
       <div className="grid grid-cols-3 gap-2">
-        {data?.isFetching ? (
+        {isFetching ? (
           <>
             {[...Array(6)].map((_, i) => (
               <Skeleton key={i} className="w-full h-36" />
@@ -29,7 +29,7 @@ const IdeaList = () => {
           </>
         ) : (
           <>
-            {data?.data?.map((idea, i) => (
+            {data?.map((idea, i) => (
               <IdeaCard key={i} {...idea} author={idea.author.name as string} />
             ))}
           </>
