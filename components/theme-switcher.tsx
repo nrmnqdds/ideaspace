@@ -16,7 +16,9 @@ export const ThemeSwitcher = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        name="theme-switcher"
+        id="theme-switcher"
+        aria-label="theme-switcher"
+        role="button"
         type="button"
         className={cn(
           "w-fit p-2 rounded-md hover:scale-110 active:scale-100 duration-200 text-foreground text-2xl font-bold focus:outline-none",
