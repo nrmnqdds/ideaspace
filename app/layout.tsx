@@ -17,17 +17,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="min-h-screen font-geist antialiased">
+    <html lang="en">
+      <body className="min-h-screen font-geist antialiased scroll-smooth">
         <ThemeProvider attribute="class" defaultTheme="dark">
           <QueryProvider>
-            <Image
-              src="/bg.svg"
-              alt="background"
-              fill
-              priority
-              className="absolute w-full h-full dark:invert z-0 pointer-events-none opacity-50 dark:opacity-30"
-            />
+            <div className="fixed w-full h-full pointer-events-none">
+              <Image
+                src="/bg.svg"
+                alt="background"
+                fill
+                priority
+                className="object-cover w-full h-full dark:invert z-0 opacity-50 dark:opacity-30"
+              />
+            </div>
             <Navbar />
             {children}
             <Footer />
