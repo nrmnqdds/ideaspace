@@ -23,6 +23,15 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    site: "@nrmnqdds",
+    creator: "@nrmnqdds",
+    title: "IdeaSpace | House of ideas",
+    description: "Dump your ideas here and let them grow.",
+    images:
+      "https://opengraph.b-cdn.net/production/documents/b45237de-851d-4dd7-a5da-bebb068e92eb.png?token=AnUK33GS-jGHvH1IwJV3y2rGq91lW00yg0C87L3F2kA&height=750&width=1200&expires=33241599150",
+  },
 };
 
 export default function RootLayout({
