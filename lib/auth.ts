@@ -1,13 +1,12 @@
-// @ts-nocheck
-
 import client from "@/prisma";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { getServerSession } from "next-auth";
 import type { AuthOptions } from "next-auth";
+import type { Adapter } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
 
 export const authConfig = {
-  adapter: PrismaAdapter(client),
+  adapter: PrismaAdapter(client) as Adapter,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -17,14 +16,6 @@ export const authConfig = {
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // ** 30 days **
-  },
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-      }
-      return token;
-    },
   },
 } satisfies AuthOptions;
 
