@@ -1,9 +1,9 @@
+import GoogleLoginButton from "@/components/google-login-button";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import UserProfile from "@/components/user-profile";
 import { getServerAuthSession } from "@/lib/auth";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
-import GoogleLoginButton from "./google-login-button";
-import UserProfile from "./user-profile";
 
 const Navbar = async () => {
   const session = await getServerAuthSession();

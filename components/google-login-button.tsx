@@ -8,12 +8,7 @@ const GoogleLoginButton = () => {
   return (
     <Button
       className="flex flex-row items-center justify-center gap-2"
-      onClick={async () => {
-        const res = await signIn("google");
-        if (res?.ok) {
-          console.log(res);
-        }
-      }}
+      onClick={async () => await signIn("google")}
     >
       <FaGoogle />
       <span>Sign in with Google</span>

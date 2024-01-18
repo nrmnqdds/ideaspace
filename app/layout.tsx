@@ -11,6 +11,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "IdeaSpace | House of ideas",
   description: "Dump your ideas here and let them grow.",
+  metadataBase: new URL("https://ideaspace.nrmnqdds.com/"),
   openGraph: {
     type: "website",
     url: "https://ideaspace.nrmnqdds.com",
