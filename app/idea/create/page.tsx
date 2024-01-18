@@ -1,5 +1,6 @@
 "use client";
 
+import { CreateIdea } from "@/actions/idea-actions";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -10,8 +11,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -27,23 +30,37 @@ const formSchema = z.object({
 });
 
 const Page = () => {
-  const [tempTags, setTempTags] = useState<string>();
+  const [typedTag, setTypedTag] = useState<string>("");
+  const [tempTags, setTempTags] = useState<string[]>([]);
 
-  // 1. Define your form.
+  const { toast } = useToast();
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       description: "",
-      tags: ["website", "easy"],
+      tags: tempTags,
     },
   });
 
-  // 2. Define a submit handler.
+  const createIdeaMutation = useMutation({
+    mutationKey: ["createIdea"],
+    mutationFn: CreateIdea,
+    onSuccess: () => {
+      toast({
+        title: "Idea created.",
+        description: "Your idea has been created.",
+      });
+      router.push("/");
+    },
+  });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    values.tags = tempTags;
     console.log(values);
+    createIdeaMutation.mutate(values);
   }
 
   return (
@@ -51,7 +68,7 @@ const Page = () => {
       <header className="w-full flex flex-col items-start justify-center z-10 text-foreground text-left">
         <h1 className="font-bold text-8xl">Create new idea.</h1>
         <p className="text-4xl font-geistmono">
-          Share your ideas with the world.
+          Share your ideas with the world!
         </p>
       </header>
 
@@ -67,7 +84,10 @@ const Page = () => {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input placeholder="Selangor Program Hub" {...field} />
+                  <Input
+                    placeholder="Cool title for the project idea."
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -81,7 +101,7 @@ const Page = () => {
                 <FormLabel>Description</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Lists all the programs held in Selangor."
+                    placeholder="Brief description of the project idea."
                     {...field}
                   />
                 </FormControl>
@@ -98,20 +118,35 @@ const Page = () => {
 
                 <FormControl>
                   <>
-                    <div className="w-full flex flex-row flex-wrap gap-2">
-                      {form.watch("tags").map((tag) => (
+                    <div className="w-full flex flex-row gap-5">
+                      <Input
+                        placeholder="Click 'Add' to add a tag."
+                        value={typedTag}
+                        onChange={(e) => {
+                          setTypedTag(e.target.value);
+                        }}
+                      />
+                      <Button
+                        type="button"
+                        onClick={() => {
+                          if (typedTag.trim() !== "") {
+                            setTempTags([...tempTags, typedTag]);
+                            setTypedTag("");
+                          }
+                        }}
+                      >
+                        Add
+                      </Button>
+                    </div>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {tempTags.map((tag, index) => (
                         <span
-                          key={tag}
-                          className="px-2 py-1 text-sm bg-zinc-500/10 border border-zinc-500 rounded-full text-zinc-500"
+                          key={index}
+                          className="px-2 py-1 rounded-md text-sm bg-zinc-500/10 border border-zinc-500 text-zinc-500"
                         >
                           {tag}
                         </span>
                       ))}
-                    </div>
-
-                    <div className="w-full flex flex-row gap-5">
-                      <Input placeholder="website" {...field} />
-                      <Button>Add</Button>
                     </div>
                   </>
                 </FormControl>
@@ -119,7 +154,18 @@ const Page = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button
+            type="submit"
+            disabled={
+              createIdeaMutation.isPending || createIdeaMutation.isSuccess
+            }
+          >
+            {createIdeaMutation.isPending
+              ? "Creating..."
+              : createIdeaMutation.isSuccess
+                ? "Created!"
+                : "Create"}
+          </Button>
         </form>
       </Form>
     </main>

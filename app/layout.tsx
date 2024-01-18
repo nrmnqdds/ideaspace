@@ -1,9 +1,11 @@
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import { Toaster } from "@/components/ui/toaster";
 import QueryProvider from "@/contexts/query-provider";
 import { ThemeProvider } from "@/contexts/theme-provider";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen font-geist antialiased scroll-smooth">
         <ThemeProvider attribute="class" defaultTheme="dark">
           <QueryProvider>
@@ -32,9 +34,22 @@ export default function RootLayout({
             </div>
             <Navbar />
             {children}
+            <Toaster />
             <Footer />
           </QueryProvider>
         </ThemeProvider>
+
+        <Script>
+          console.log("
+          ██╗██████╗░███████╗░█████╗░░██████╗██████╗░░█████╗░░█████╗░███████╗░░░
+          ██║██╔══██╗██╔════╝██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔════╝░░░
+          ██║██║░░██║█████╗░░███████║╚█████╗░██████╔╝███████║██║░░╚═╝█████╗░░░░░
+          ██║██║░░██║██╔══╝░░██╔══██║░╚═══██╗██╔═══╝░██╔══██║██║░░██╗██╔══╝░░░░░
+          ██║██████╔╝███████╗██║░░██║██████╔╝██║░░░░░██║░░██║╚█████╔╝███████╗██╗
+          ╚═╝╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░╚═╝░░░░░╚═╝░░╚═╝░╚════╝░╚══════╝╚═╝");
+          console.log("Like this project? Star it on GitHub!");
+          console.log("--&gt; https://github.com/nrmnqdds/ideaspace");
+        </Script>
       </body>
     </html>
   );
