@@ -1,7 +1,7 @@
 import client from "@/prisma";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { getServerSession } from "next-auth";
-import type { AuthOptions } from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import type { Adapter } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -17,6 +17,6 @@ export const authConfig = {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // ** 30 days **
   },
-} satisfies AuthOptions;
+} satisfies NextAuthOptions;
 
 export const getServerAuthSession = async () => getServerSession(authConfig);
