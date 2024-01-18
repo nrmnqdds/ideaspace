@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "IdeaSpace",
     images: [
       {
-        url: "https://opengraph.b-cdn.net/production/documents/b45237de-851d-4dd7-a5da-bebb068e92eb.png?token=AnUK33GS-jGHvH1IwJV3y2rGq91lW00yg0C87L3F2kA&height=750&width=1200&expires=33241599150",
+        url: "https://opengraph.b-cdn.net/production/documents/43c854fb-72a1-4e1b-b837-3606c7fb8cbc.png?token=L1Uy-36YgwHCa2PLUHHRnpK0xy1wwKhZhT53bpmLGyo&height=591&width=1200&expires=33241606772",
       },
     ],
   },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "IdeaSpace | House of ideas",
     description: "Dump your ideas here and let them grow.",
     images:
-      "https://opengraph.b-cdn.net/production/documents/b45237de-851d-4dd7-a5da-bebb068e92eb.png?token=AnUK33GS-jGHvH1IwJV3y2rGq91lW00yg0C87L3F2kA&height=750&width=1200&expires=33241599150",
+      "https://opengraph.b-cdn.net/production/documents/43c854fb-72a1-4e1b-b837-3606c7fb8cbc.png?token=L1Uy-36YgwHCa2PLUHHRnpK0xy1wwKhZhT53bpmLGyo&height=591&width=1200&expires=33241606772",
   },
 };
 
