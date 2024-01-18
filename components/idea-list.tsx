@@ -21,6 +21,12 @@ const fakeData = [
     tags: ["tag1", "tag2"],
     author: "Third author",
   },
+  {
+    title: "Third title",
+    description: "Third description",
+    tags: ["tag1", "tag2"],
+    author: "Third author",
+  },
 ];
 
 const IdeaList = () => {
@@ -31,7 +37,7 @@ const IdeaList = () => {
           <Button className="font-semibold">Create Idea</Button>
         </Link>
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-2">
         {fakeData.map((idea, i) => (
           <IdeaCard key={i} {...idea} />
         ))}
