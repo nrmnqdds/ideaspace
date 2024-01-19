@@ -23,8 +23,16 @@ const Page = ({ params }: { params: { id: string } }) => {
     <main className="flex flex-col min-h-screen items-center justify-center px-5 pt-24 sm:px-10 lg:px-10">
       <Card className="w-full lg:w-1/2 z-10">
         <CardHeader>
-          <CardTitle>{data?.title}</CardTitle>
-          <CardDescription>{data?.description}</CardDescription>
+          <CardTitle>
+            {!isFetching ? data?.title : <Skeleton className="w-1/2 h-10" />}
+          </CardTitle>
+          <CardDescription>
+            {!isFetching ? (
+              data?.description
+            ) : (
+              <Skeleton className="w-full h-10" />
+            )}
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <CardDescription className="flex flex-row flex-wrap gap-2">
@@ -42,18 +50,31 @@ const Page = ({ params }: { params: { id: string } }) => {
           <h1 className="text-sm text-gray-400">Idea by:</h1>
           <CardDescription>
             <div className="flex flex-row items-center justify-center">
-              <Avatar>
-                <AvatarImage
-                  src={data?.author.image as string}
-                  alt={data?.author.name as string}
-                />
-                <AvatarFallback>
-                  <Skeleton className="w-full h-full" />
-                </AvatarFallback>
-              </Avatar>
+              {!isFetching ? (
+                <Avatar>
+                  <AvatarImage
+                    src={data?.author.image as string}
+                    alt={data?.author.name as string}
+                  />
+                  <AvatarFallback>
+                    <Skeleton className="w-full h-full" />
+                  </AvatarFallback>
+                </Avatar>
+              ) : (
+                <Skeleton className="w-10 h-10" />
+              )}
               <div className="flex flex-col items-start justify-center">
-                <span className="ml-2">{data?.author.name}</span>
-                <span className="ml-2">{data?.author.email}</span>
+                {!isFetching ? (
+                  <>
+                    <span className="ml-2">{data?.author.name}</span>
+                    <span className="ml-2">{data?.author.email}</span>
+                  </>
+                ) : (
+                  <>
+                    <Skeleton className="w-20 h-5 ml-2 mb-2" />
+                    <Skeleton className="w-20 h-5 ml-2" />
+                  </>
+                )}
               </div>
             </div>
           </CardDescription>
