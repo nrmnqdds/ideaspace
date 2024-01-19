@@ -13,18 +13,26 @@ const IdeaList = () => {
   const { data, isFetching } = useQuery({
     queryKey: ["ideas"],
     queryFn: async () => await GetAllIdeas(),
+    retry: true,
   });
 
   const { data: session } = useQuery({
     queryKey: ["session"],
     queryFn: async () => await GetSession(),
+    retry: true,
   });
 
   const router = useRouter();
 
   return (
     <section className="mt-24 z-10 w-full space-y-5 px-2 lg:px-60">
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-end gap-5">
+        <div>
+          <h1>Total ideas:</h1>
+          <h1 className="font-semibold text-2xl">
+            {isFetching ? <Skeleton className="w-1/2 h-10" /> : data?.length}
+          </h1>
+        </div>
         <Button
           className="font-semibold"
           onClick={async () =>
@@ -37,7 +45,7 @@ const IdeaList = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
         {isFetching ? (
           <>
-            {[...Array(6)].map((_, i) => (
+            {[...Array(12)].map((_, i) => (
               <Skeleton key={i} className="w-full h-36" />
             ))}
           </>
