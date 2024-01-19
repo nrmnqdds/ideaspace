@@ -20,7 +20,7 @@ const Page = ({ params }: { params: { id: string } }) => {
   });
 
   return (
-    <main className="flex flex-col min-h-screen items-center justify-center px-5 pt-24 sm:px-10 lg:px-10 bg-background">
+    <main className="flex flex-col min-h-screen items-center justify-center px-5 pt-24 sm:px-10 lg:px-10">
       <Card className="w-full lg:w-1/2 z-10">
         <CardHeader>
           <CardTitle>{data?.title}</CardTitle>

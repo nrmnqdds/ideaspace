@@ -66,7 +66,7 @@ const Page = () => {
   }
 
   return (
-    <main className="flex flex-col min-h-screen items-center justify-start px-5 pt-24 sm:px-10 lg:px-10 bg-background">
+    <main className="flex flex-col min-h-screen items-center justify-start px-5 pt-24 sm:px-10 lg:px-10">
       <header className="w-full flex flex-col items-start justify-center z-10 text-foreground text-left">
         <h1 className="font-bold text-5xl md:text-8xl">Create new idea.</h1>
         <p className="text-4xl font-geistmono">
