@@ -1,6 +1,7 @@
 "use client";
 
 import { CreateIdea } from "@/actions/idea-actions";
+import CancelButton from "@/components/cancel-button";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,6 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -100,7 +102,7 @@ const Page = () => {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Input
+                  <Textarea
                     placeholder="Brief description of the project idea."
                     {...field}
                   />
@@ -154,18 +156,21 @@ const Page = () => {
               </FormItem>
             )}
           />
-          <Button
-            type="submit"
-            disabled={
-              createIdeaMutation.isPending || createIdeaMutation.isSuccess
-            }
-          >
-            {createIdeaMutation.isPending
-              ? "Creating..."
-              : createIdeaMutation.isSuccess
-                ? "Created!"
-                : "Create"}
-          </Button>
+          <div className="flex flex-row gap-5">
+            <CancelButton />
+            <Button
+              type="submit"
+              disabled={
+                createIdeaMutation.isPending || createIdeaMutation.isSuccess
+              }
+            >
+              {createIdeaMutation.isPending
+                ? "Creating..."
+                : createIdeaMutation.isSuccess
+                  ? "Created!"
+                  : "Create"}
+            </Button>
+          </div>
         </form>
       </Form>
     </main>
