@@ -27,7 +27,7 @@ const IdeaCard = (props: TIdea) => {
           <CardTitle>{props.title}</CardTitle>
           <CardDescription>{props.description}</CardDescription>
         </CardHeader>
-        <CardContent className="space-x-2">
+        <CardContent className="flex flex-row flex-wrap items-center justify-start gap-2">
           {props.tags.map((tag) => (
             <span
               key={tag}

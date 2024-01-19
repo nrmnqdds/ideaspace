@@ -64,9 +64,9 @@ const Page = () => {
   }
 
   return (
-    <main className="flex flex-col min-h-screen items-center justify-start p-24 bg-background">
+    <main className="flex flex-col min-h-screen items-center justify-start px-5 pt-24 sm:px-10 lg:px-10 bg-background">
       <header className="w-full flex flex-col items-start justify-center z-10 text-foreground text-left">
-        <h1 className="font-bold text-8xl">Create new idea.</h1>
+        <h1 className="font-bold text-5xl md:text-8xl">Create new idea.</h1>
         <p className="text-4xl font-geistmono">
           Share your ideas with the world!
         </p>
@@ -75,7 +75,7 @@ const Page = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 z-10 bg-background border border-border p-10 rounded-md w-[600px] mt-24"
+          className="space-y-8 z-10 bg-background border border-border p-10 rounded-md w-[300px] md:w-[600px] mt-24"
         >
           <FormField
             control={form.control}

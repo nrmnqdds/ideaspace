@@ -23,7 +23,7 @@ const IdeaList = () => {
   const router = useRouter();
 
   return (
-    <section className="mt-24 z-10 w-full space-y-5 px-60">
+    <section className="mt-24 z-10 w-full space-y-5 px-2 lg:px-60">
       <div className="flex items-center justify-end">
         <Button
           className="font-semibold"
@@ -34,7 +34,7 @@ const IdeaList = () => {
           Create Idea
         </Button>
       </div>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
         {isFetching ? (
           <>
             {[...Array(6)].map((_, i) => (

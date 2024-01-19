@@ -11,7 +11,7 @@ const GoogleLoginButton = () => {
       onClick={async () => await signIn("google")}
     >
       <FaGoogle />
-      <span>Sign in with Google</span>
+      <span className="hidden sm:block">Sign in with Google</span>
     </Button>
   );
 };
