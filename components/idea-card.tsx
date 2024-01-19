@@ -23,7 +23,7 @@ type TIdea = {
 const IdeaCard = (props: TIdea) => {
   return (
     <Link href={`/idea/${props.id}`}>
-      <Card className="relative group w-full h-full hover:bg-gradient-to-br hover:from-background hover:to-primary-foreground hover:from-60% hover:border-foreground/50 transition-colors duration-100 flex flex-col justify-between">
+      <Card className="relative group w-full h-full hover:bg-primary-foreground hover:border-foreground/50 transition-colors duration-100 flex flex-col justify-between">
         {/* <span className="relative bottom-5 right-5 overflow-hidden"> */}
         <ImArrowUpRight2 className=" text-2xl text-gray-500 text-dim absolute right-5 bottom-5 h-5 w-5 opacity-0 transition-[opacity_transform] duration-0 group-hover:translate-x-2 group-hover:opacity-100 group-hover:duration-300" />
         {/* </span> */}
