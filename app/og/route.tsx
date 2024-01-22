@@ -36,7 +36,9 @@ export async function GET(req: NextRequest) {
         flexDirection: "column",
         flexWrap: "nowrap",
         backgroundColor: "black",
-        backgroundImage: `url("../../public/bg.svg")`,
+        backgroundImage:
+          "radial-gradient(circle at 25px 25px, lightgray 2%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 2%, transparent 0%)",
+        backgroundSize: "100px 100px",
       }}
     >
       <div
@@ -104,7 +106,7 @@ export async function GET(req: NextRequest) {
           }}
           tw="py-3"
         >
-          <img alt="authorImage" width="50" height="50" src={authorImage} />
+          <img width="50" height="50" src={authorImage} alt="bg-image" />
           <div
             style={{
               display: "flex",
