@@ -37,7 +37,6 @@ export async function GET(req: NextRequest) {
         flexWrap: "nowrap",
         backgroundColor: "black",
         backgroundImage: `url("../../public/bg.svg")`,
-        backgroundSize: "1200px 630px",
       }}
     >
       <div
