@@ -9,7 +9,6 @@ export async function GET(req: NextRequest) {
   const description = searchParams.get("description") || "";
   const authorName = searchParams.get("authorName") || "name";
   const authorImage = searchParams.get("authorImage");
-  const authorEmail = searchParams.get("authorEmail") || "email";
   const tags = searchParams.get("tags") || "";
   if (!authorImage) {
     return new ImageResponse(<h1>Err!</h1>, {
@@ -116,7 +115,6 @@ export async function GET(req: NextRequest) {
             }}
           >
             <div style={{ color: "white" }}>{authorName}</div>
-            <div style={{ color: "white" }}>{authorEmail}</div>
           </div>
         </div>
         <div tw="text-sm flex flex-row flex-wrap">

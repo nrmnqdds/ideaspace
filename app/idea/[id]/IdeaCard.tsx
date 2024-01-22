@@ -64,7 +64,11 @@ export const IdeaCard = ({ id }: { id: string }) => {
               {!isFetching ? (
                 <CardDescription className="flex flex-col items-start justify-center">
                   <span className="ml-2">{data?.author.name}</span>
-                  <span className="ml-2">{data?.author.email}</span>
+                  <span className="ml-2">
+                    {`${data?.author.email?.split("@")[0].slice(0, -4)}****${
+                      data?.author.email?.split("@")[1]
+                    }`}
+                  </span>
                 </CardDescription>
               ) : (
                 <>

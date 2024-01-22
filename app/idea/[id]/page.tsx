@@ -9,7 +9,7 @@ export async function generateMetadata({
 }): Promise<Metadata | undefined> {
   const data = await GetIdeaById(params.id);
   const tags = data?.tags.join(",");
-  const ogImage = `https://ideaspace.nrmnqdds.com/og?title=${data?.title}&description=${data?.description}&authorName=${data?.author.name}&authorImage=${data?.author.image}&authorEmail=${data?.author.email}&tags=${tags}`;
+  const ogImage = `https://ideaspace.nrmnqdds.com/og?title=${data?.title}&description=${data?.description}&authorName=${data?.author.name}&authorImage=${data?.author.image}&tags=${tags}`;
   return {
     title: data?.title,
     description: data?.description,
