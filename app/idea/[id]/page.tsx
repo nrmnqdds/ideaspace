@@ -1,5 +1,3 @@
-"use server";
-
 import { GetIdeaById } from "@/actions/idea-actions";
 import { Metadata } from "next";
 import IdeaCard from "./IdeaCard";
