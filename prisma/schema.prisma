@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  engineType = "library"
 }
 
 datasource db {
@@ -54,6 +55,12 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+enum Status {
+  FRESH_IDEA
+  ONGOING_WIP
+  BUILT
+}
+
 model Idea {
   id          String   @id @default(cuid())
   title       String
@@ -61,6 +68,7 @@ model Idea {
   tags        String[]
   author      User     @relation(fields: [authorId], references: [id])
   authorId    String
+  status      Status   @default(FRESH_IDEA)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

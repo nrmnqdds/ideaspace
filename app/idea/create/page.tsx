@@ -12,6 +12,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectGroup,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,6 +37,7 @@ const formSchema = z.object({
     message: "Please enter a description.",
   }),
   tags: z.array(z.string()),
+  status: z.enum(["FRESH_IDEA", "ONGOING_WIP", "BUILT"]),
 });
 
 const Page = () => {
@@ -44,6 +53,7 @@ const Page = () => {
       title: "",
       description: "",
       tags: tempTags,
+      status: "FRESH_IDEA",
     },
   });
 
@@ -156,6 +166,34 @@ const Page = () => {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="status"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Status</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue="FRESH_IDEA"
+                  value={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a status" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="FRESH_IDEA">Fresh Idea</SelectItem>
+                      <SelectItem value="ONGOING_WIP">WIP</SelectItem>
+                      <SelectItem value="BUILT">Built</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <div className="flex flex-row gap-5">
             <CancelButton />
             <Button
@@ -167,8 +205,8 @@ const Page = () => {
               {createIdeaMutation.isPending
                 ? "Creating..."
                 : createIdeaMutation.isSuccess
-                  ? "Created!"
-                  : "Create"}
+                ? "Created!"
+                : "Create"}
             </Button>
           </div>
         </form>

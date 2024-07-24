@@ -3,11 +3,13 @@
 import { getServerAuthSession } from "@/lib/auth";
 import { connectPrisma } from "@/lib/prisma";
 import client from "@/prisma";
+import { Status } from "@prisma/client";
 
 export const CreateIdea = async (values: {
   title: string;
   description: string;
   tags: string[];
+  status: Status;
 }) => {
   try {
     const session = await getServerAuthSession();
@@ -29,6 +31,7 @@ export const CreateIdea = async (values: {
         description: values.description,
         tags: values.tags,
         authorId: userExists.id,
+        status: values.status,
       },
     });
 
