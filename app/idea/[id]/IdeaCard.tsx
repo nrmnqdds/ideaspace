@@ -12,6 +12,38 @@ import {
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
+import { Rocket } from "lucide-react";
+
+const StatusBadge = ({ status }: { status: string | undefined }) => {
+  let displayText = status || "";
+  let bgColour = "bg-gray-500";
+
+  switch (status) {
+    case "FRESH_IDEA":
+      displayText = "Fresh Idea";
+      bgColour = "bg-sky-500";
+      break;
+    case "ONGOING_WIP":
+      displayText = "WIP";
+      bgColour = "bg-amber-500";
+      break;
+    case "BUILT":
+      displayText = "Built";
+      bgColour = "bg-emerald-500";
+      break;
+  }
+
+  return (
+    <div
+      className={`absolute top-[-2px] right-5 rounded-b-lg ${bgColour} px-3 py-1 text-white text-xs sm:text-lg`}
+    >
+      <span className="flex items-center">
+        {displayText}
+        <Rocket className="ml-1 w-3 h-3" />
+      </span>
+    </div>
+  );
+};
 
 export const IdeaCard = ({ id }: { id: string }) => {
   const { data, isFetching } = useQuery({
@@ -21,7 +53,8 @@ export const IdeaCard = ({ id }: { id: string }) => {
 
   return (
     <main className="flex flex-col min-h-screen items-center justify-center px-5 pt-24 sm:px-10 lg:px-10">
-      <Card className="w-full lg:w-1/2 z-10">
+      <Card className="relative w-full lg:w-1/2 z-10">
+        {!isFetching && data?.status && <StatusBadge status={data.status} />}
         <CardHeader>
           <CardTitle>
             {!isFetching ? data?.title : <Skeleton className="w-1/2 h-10" />}
